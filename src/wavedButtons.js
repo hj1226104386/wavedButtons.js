@@ -58,6 +58,7 @@
 
                     function removeChild(e) {
                         if (children.removeEventListener) {
+                            // 动画执行结束后移除子元素
                             if (children.parentNode) {
                                 children.parentNode.removeChild(children);
                             }
@@ -83,11 +84,6 @@
             wave.style.backgroundColor = this.options.bgColor;
             wave.style.opacity = this.options.opacity;
             wave.style.animation = 'ripple ' + this.options.speed + ' linear';
-            // 动画执行结束后移除子元素
-            // setTimeout(function() {
-            //     btn.removeChild(wave);
-            // }, 800);
-
         },
         // js动态加载css
         loadCss: function() {
