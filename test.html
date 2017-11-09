@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        button {
+            display: block;
+            background: orange;
+            height: 50px;
+            line-height: 50px;
+            color: #fff;
+            text-align: center;
+            width: 200px;
+            margin: 5px;
+            border-radius: 5px;
+            font-size: 14px;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <button data-waves="waves">按钮1</button>
+        <button data-waves="waves">按钮2</button>
+        <button data-waves="waves">按钮3</button>
+    </div>
+
+
+    <script src="./wavedButtons.js"></script>
+    <script>
+        window.onload = function() {
+            // 初始化
+            new Waves({
+                bgColor: 'purple'
+            })
+        }
+    </script>
+</body>
+
+</html>

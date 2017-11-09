@@ -1,0 +1,30 @@
+[data-waves="waves"] {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-webkit-user-select: none;
+    -ms-user-select: none;
+    outline: none;
+}
+
+[data-waves="waves"] .wave {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 888;
+    transform: scale(0);
+    transform-origin: center center;
+    /* animation: ripple .6s 0s linear; */
+}
+
+@keyframes ripple {
+    100% {
+        opacity: 0;
+        transform: scale(1.5);
+    }
+}
