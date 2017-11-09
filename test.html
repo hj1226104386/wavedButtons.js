@@ -41,9 +41,13 @@
     <script>
         window.onload = function() {
             // 初始化
+            console.time('timer')
             new Waves({
-                bgColor: 'purple'
+                opacity: .8,
+                bgColor: '#000',
+                speed: '.6s'
             })
+            console.timeEnd('timer')
         }
     </script>
 </body>

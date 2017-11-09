@@ -41,26 +41,30 @@
         bindEvents: function() {
             var that = this;
             var newSpan = document.createElement('span');
-            newSpan.className = 'wave';
+            newSpan.className = '_wave';
             for (var i = 0; i < that.getBtns.length; i++) {
                 var btn = that.getBtns[i];
                 btn.addEventListener('mousedown', function(e) {
                     e.stopPropagation();
                     // 在每个按钮中动态生成子元素
-                    console.log(e)
-                    this.appendChild(newSpan);
-                    var children = this.querySelector('.wave');
+                    this.appendChild(newSpan)
+                    var children = this.querySelector('._wave');
                     // 给子元素添加样式
-                    that.calcPosition(this, children, e)
-                    children.removeEventListener("webkitAnimationEnd", removeChild);
-                    children.addEventListener("webkitAnimationEnd", removeChild);
-
-                    function removeChild() {
-                        console.log("动画结束");
+                    that.calcPosition(this, children, e);
+                    // 添加动画执行结束事件，只执行一次
+                    if (children.addEventListener) {
+                        children.addEventListener("webkitAnimationEnd", removeChild, false);
                     }
-                })
 
-
+                    function removeChild(e) {
+                        if (children.removeEventListener) {
+                            if (children.parentNode) {
+                                children.parentNode.removeChild(children);
+                            }
+                            children.removeEventListener("webkitAnimationEnd", removeChild, false);
+                        }
+                    }
+                });
             }
         },
         // 计算位置,设置样式
@@ -81,7 +85,7 @@
             wave.style.animation = 'ripple ' + this.options.speed + ' linear';
             // 动画执行结束后移除子元素
             // setTimeout(function() {
-            //     wave.parentNode.removeChild(wave);
+            //     btn.removeChild(wave);
             // }, 800);
 
         },
@@ -108,5 +112,5 @@
             return defaults;
         },
     }
-    window.Waves = Waves
+    window.Waves = Waves;
 })(window, document)
