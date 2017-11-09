@@ -23,91 +23,81 @@ var cssnano = require('gulp-cssnano'); // css压缩
 var autoprefixer = require('gulp-autoprefixer'); // 自动处理css兼容后缀
 var concat = require('gulp-concat'); // js文件合并
 var uglify = require('gulp-uglify'); // js混淆
-var imagemin = require('gulp-imagemin');  // 图片压缩
+var imagemin = require('gulp-imagemin'); // 图片压缩
 var assetRev = require('gulp-asset-rev'); // 给文件添加版本号(MD5)
 
 // 路径配置
 var path = {
     input: {
-        html: ['./src/*.html'],
-        css: ['./src/css/*.css'],
-        js: ['./src/js/*.js'],
-        images: ['./src/images/*'],
-        plugins: ['./src/plugins/**/*']
+        css: ['./src/*.css'],
+        js: ['./src/*.js']
     },
     output: {
-        html: './dist/',
-        css: './dist/css',
-        js: './dist/js/',
-        plugins: './dist/plugins',
-        images: './dist/images',
+        css: './build/',
+        js: './build/'
     }
 };
 
 // 压缩html
-gulp.task('html', function () {
+gulp.task('html', function() {
     var options = {
-        removeComments: true,//清除HTML注释
-        collapseWhitespace: true,//压缩HTML
-        removeScriptTypeAttributes: true,//删除<script>的type="text/javascript"
-        removeStyleLinkTypeAttributes: true,//删除<style>和<link>的type="text/css"
-        minifyJS: true,//压缩页面JS
-        minifyCSS: true//压缩页面CSS
+        removeComments: true, //清除HTML注释
+        collapseWhitespace: true, //压缩HTML
+        removeScriptTypeAttributes: true, //删除<script>的type="text/javascript"
+        removeStyleLinkTypeAttributes: true, //删除<style>和<link>的type="text/css"
+        minifyJS: true, //压缩页面JS
+        minifyCSS: true //压缩页面CSS
     };
     gulp.src(path.input.html)
-    // .pipe(htmlmin(options))
+        // .pipe(htmlmin(options))
         .pipe(gulp.dest(path.output.html))
-        .pipe(browserSync.reload({stream: true}));
+        .pipe(browserSync.reload({ stream: true }));
 });
 
 // 处理css
-gulp.task('css', function () {
+gulp.task('css', function() {
     return gulp.src(path.input.css)
         .pipe(autoprefixer())
-        .pipe(concat('all.css'))
         .pipe(cssnano())
-        .pipe(rename({suffix: '.min'}))
+        .pipe(rename({ suffix: '.min' }))
         .pipe(assetRev())
         .pipe(gulp.dest(path.output.css))
-        .pipe(browserSync.reload({stream: true}));
 });
 
 // 合并压缩js
-gulp.task('js', function () {
+gulp.task('js', function() {
     return gulp.src(path.input.js)
-        .pipe(concat('all.js'))
         .pipe(babel({
             presets: ['es2015']
         }))
         .pipe(uglify())
-        .pipe(rename({suffix: '.min'}))
+        .pipe(rename({ suffix: '.min' }))
         .pipe(assetRev())
         .pipe(gulp.dest(path.output.js))
-        .pipe(browserSync.reload({stream: true}));
 });
 
 // 压缩图片
-gulp.task('images', function () {
+gulp.task('images', function() {
     return gulp.src(path.input.images)
         .pipe(imagemin())
         // .pipe(assetRev())
         .pipe(gulp.dest(path.output.images))
-        .pipe(browserSync.reload({stream: true}));
+        .pipe(browserSync.reload({ stream: true }));
 });
 // 清空目标文件
-gulp.task('clean', function () {
+gulp.task('clean', function() {
     return gulp.src('./dist/*')
         .pipe(clean());
 });
 
 // 复制第三方插件
-gulp.task('copy', function () {
+gulp.task('copy', function() {
     return gulp.src(path.input.plugins)
         .pipe(gulp.dest(path.output.plugins))
 });
 
 // 本地服务器
-gulp.task('serve', ['html', 'css', 'js', 'images'], function () {
+gulp.task('serve', ['html', 'css', 'js', 'images'], function() {
     browserSync.init({
         port: 3000,
         server: {
@@ -119,6 +109,6 @@ gulp.task('serve', ['html', 'css', 'js', 'images'], function () {
 });
 
 // 默认任务
-gulp.task('default', ['serve'],function () {
-    
+gulp.task('default', ['serve'], function() {
+
 });
