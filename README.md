@@ -13,11 +13,11 @@ HTML：
 `<button data-waves="waves">按钮3</button>`    
 `<div class="btn5" data-waves="waves">按钮5</div>`
 
-JS:  
-`var waves = new Waves()`
+JS： 
+`wave.init(options)`
 
 ## 配置/configuration
-        new Waves({
+        wave.init({
                 opacity: .8,
                 bgColor: '#fff',
                 speed: '.6s'

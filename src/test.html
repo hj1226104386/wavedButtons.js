@@ -27,6 +27,7 @@
             border: none;
         }
     </style>
+    <link rel="stylesheet" href="./src/wavedButtons.css">
 </head>
 
 <body>
@@ -44,9 +45,9 @@
         window.onload = function() {
             // 初始化
             console.time('timer')
-            new Waves({
+            wave.init({
                 opacity: .8,
-                bgColor: '#fff',
+                bgColor: '#000',
                 speed: '.6s'
             })
             console.timeEnd('timer')
