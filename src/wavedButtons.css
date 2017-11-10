@@ -25,6 +25,6 @@
 @keyframes ripple {
     100% {
         opacity: 0;
-        transform: scale(1.8);
+        transform: scale(2);
     }
 }
