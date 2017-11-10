@@ -109,6 +109,4 @@ gulp.task('serve', ['html', 'css', 'js', 'images'], function() {
 });
 
 // 默认任务
-gulp.task('default', ['serve'], function() {
-
-});
+gulp.task('default', ['js', 'css']);

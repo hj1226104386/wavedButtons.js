@@ -114,5 +114,7 @@
     window.wave = {};
     wave.init = function(options) {
         new Waves(options)
-    }
+    };
+    // 增加commonjs规范接口支持
+    module.exports.wave = wave;
 })(window, document)
